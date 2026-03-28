@@ -1,0 +1,190 @@
+@import '../driver-shared.css';
+
+.vehicle-info {
+  padding: 32px;
+  animation: driverFadeIn 0.3s ease-in;
+}
+
+.vehicle-info h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+}
+
+/* Vehicle card — blue gradient border like fuel station table */
+.vehicle-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(74, 144, 226, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+    linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  overflow: hidden;
+  animation: driverFadeInUp 0.5s ease 0.1s backwards;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vehicle-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 30px 80px rgba(74, 144, 226, 0.2),
+    0 15px 40px rgba(0, 0, 0, 0.12),
+    0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+/* Card header — blue gradient like fuel station */
+.vehicle-header {
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vehicle-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.vehicle-id {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Details section */
+.vehicle-details {
+  padding: 24px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+}
+
+.detail-row:last-child { border-bottom: none; }
+
+.detail-row span {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.detail-row strong {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.detail-row strong.warning-text {
+  color: #dc2626;
+}
+
+/* Fuel bar */
+.fuel-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.fuel-indicator span {
+  font-weight: 700;
+  color: #1f2937;
+  min-width: 36px;
+  text-align: right;
+}
+
+.fuel-bar-track {
+  width: 140px;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fuel-bar {
+  height: 10px;
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  border-radius: 10px;
+  transition: width 0.6s ease;
+  min-width: 4px;
+}
+
+.fuel-bar.low {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  animation: driverPulse 1.5s ease-in-out infinite;
+}
+
+/* Warning banner */
+.warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #92400e;
+  margin: 8px 0;
+}
+
+/* Report issue button */
+.btn-report-issue {
+  margin: 0 24px 24px 24px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-report-issue:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Loading / no-data */
+.loading, .no-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: #6b7280;
+  font-size: 15px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed #e5e7eb;
+  margin: 32px;
+}
+
+/* Dark theme */
+[data-theme="dark"] .vehicle-info h2 { color: #ffffff; }
+[data-theme="dark"] .vehicle-card { background: #2d2d2d; }
+[data-theme="dark"] .vehicle-details { background: #2d2d2d; }
+[data-theme="dark"] .detail-row { border-color: #404040; }
+[data-theme="dark"] .detail-row strong { color: #ffffff; }
+[data-theme="dark"] .loading, [data-theme="dark"] .no-data { background: #2d2d2d; color: #b0b0b0; }

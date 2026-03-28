@@ -1,0 +1,85 @@
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import NotificationBell from './NotificationBell';
+import NotificationPanel from './NotificationPanel';
+import { logout } from '../api/api';
+import './AdminHeader.css';
+
+const AdminHeader = () => {
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const navigate = useNavigate();
+
+  // Load real unread count from DB
+  useEffect(() => {
+    const loadCount = () => {
+      const token = localStorage.getItem('authToken');
+      fetch('/api/admin/notifications', {
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+      })
+        .then(r => r.json())
+        .then(data => { if (Array.isArray(data)) setNotificationCount(data.filter(n => !n.read).length); })
+        .catch(() => {});
+    };
+    loadCount();
+    const interval = setInterval(loadCount, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  return (
+    <>
+      <div className="admin-header">
+        <div className="header-left">
+          <h1 className="page-title">Dashboard</h1>
+        </div>
+        
+        <div className="header-right">
+          <NotificationBell 
+            count={notificationCount}
+            onClick={() => setShowNotifications(true)}
+          />
+          
+          <div className="header-profile" onClick={() => setShowProfileMenu(!showProfileMenu)}>
+            <img src="https://via.placeholder.com/40" alt="Admin" className="header-avatar" />
+            <div className="header-profile-info">
+              <span className="header-profile-name">Admin User</span>
+              <span className="header-profile-role">Administrator</span>
+            </div>
+            <span className="profile-dropdown-arrow">▼</span>
+            
+            {showProfileMenu && (
+              <div className="profile-dropdown-menu">
+                <Link to="/admin/settings" className="dropdown-menu-item">
+                  <span>👤</span>
+                  <span>My Profile</span>
+                </Link>
+                <Link to="/admin/settings" className="dropdown-menu-item">
+                  <span>⚙️</span>
+                  <span>Settings</span>
+                </Link>
+                <div className="dropdown-divider"></div>
+                <button className="dropdown-menu-item logout-item" onClick={handleLogout}>
+                  <span>🚪</span>
+                  <span>Logout</span>
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <NotificationPanel 
+        isOpen={showNotifications}
+        onClose={() => setShowNotifications(false)}
+      />
+    </>
+  );
+};
+
+export default AdminHeader;

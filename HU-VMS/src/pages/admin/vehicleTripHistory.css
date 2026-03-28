@@ -1,0 +1,164 @@
+.trip-history-container {
+  padding: 30px;
+  padding-left: 50px;
+  background: white;
+  min-height: 100vh;
+  color: #32CD32;
+  position: relative;
+  z-index: 1;
+}
+
+.trip-history-container h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #32CD32;
+  font-weight: 600;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(50, 205, 50, 0.1);
+}
+
+.controls-bar {
+  margin-bottom: 30px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid #32CD32;
+  border-radius: 8px;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #32CD32;
+  box-shadow: 0 0 0 2px rgba(50, 205, 50, 0.2);
+}
+
+.search-input::placeholder {
+  color: #666;
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  overflow-x: scroll;
+  overflow-y: visible;
+  border: 1px solid #32CD32;
+  box-shadow: 0 4px 20px rgba(50, 205, 50, 0.1);
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.trip-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+.trip-table th,
+.trip-table td {
+  white-space: nowrap;
+  padding: 18px 20px;
+}
+
+.trip-table thead {
+  background: linear-gradient(135deg, #32CD32, #28a428);
+}
+
+.trip-table th {
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  border-bottom: 2px solid #32CD32;
+}
+
+.trip-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background 0.3s ease;
+  background: white;
+}
+
+.trip-table tbody tr:hover {
+  background: #f0f0f0;
+}
+
+.trip-table td {
+  color: #000;
+  font-size: 14px;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-completed {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #32CD32;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .trip-history-container {
+    padding: 20px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .trip-table {
+    min-width: 1000px;
+  }
+}
+
+.status-delayed {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+.status-cancelled {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
+
+/* Custom Scrollbar */
+.table-container::-webkit-scrollbar {
+  height: 12px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #32CD32;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #28a428;
+}

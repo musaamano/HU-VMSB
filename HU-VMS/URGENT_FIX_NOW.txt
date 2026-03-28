@@ -1,0 +1,106 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                    ⚠️  URGENT - DO THIS NOW  ⚠️                ║
+╚═══════════════════════════════════════════════════════════════╝
+
+The React error is happening because you have the WRONG version
+of jspdf installed (4.2.0 instead of 2.5.1).
+
+YOU MUST DO THESE STEPS MANUALLY:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: STOP THE DEV SERVER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Press Ctrl+C in your terminal to stop "npm run dev"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: OPEN TERMINAL IN THE CORRECT FOLDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Navigate to: HU-VMS-main/HU-VMS
+
+Make sure you're in the folder that contains:
+- package.json
+- node_modules folder
+- src folder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 3: DELETE OLD FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPTION A - Windows File Explorer:
+1. Delete the "node_modules" folder (right-click → Delete)
+2. Delete the "package-lock.json" file
+
+OPTION B - Windows PowerShell:
+Remove-Item -Recurse -Force node_modules
+Remove-Item package-lock.json
+
+OPTION C - Git Bash / Mac / Linux:
+rm -rf node_modules package-lock.json
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 4: REINSTALL EVERYTHING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Run this command:
+
+npm install
+
+Wait for it to complete (may take 1-2 minutes)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 5: START THE SERVER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+npm run dev
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 6: VERIFY IT WORKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Open browser to: http://localhost:5173
+
+You should see NO React errors in the console!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHY THIS IS NECESSARY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The package.json has been updated with correct versions:
+✓ jspdf: 2.5.1 (was 4.2.0 - WRONG!)
+✓ jspdf-autotable: 3.8.2 (was 5.0.7 - WRONG!)
+
+But npm doesn't automatically update installed packages.
+You MUST delete node_modules and reinstall to get the correct versions.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ALTERNATIVE - USE THE BATCH FILE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If you're on Windows, just double-click:
+fix-and-install.bat
+
+This will do all the steps automatically!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AFTER FIX - TEST PDF EXPORT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Login as driver
+2. Go to Fuel Report
+3. Fill out the form
+4. Click "Export PDF"
+5. Select Admin or Transport Office
+6. PDF should download!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -1,0 +1,155 @@
+@import '../driver-shared.css';
+
+/* Availability dropdown — used inline in the dashboard header */
+.driver-availability-dropdown {
+  position: relative;
+}
+
+/* Dropdown trigger button */
+.status-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  white-space: nowrap;
+}
+
+.status-dropdown-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  border-color: rgba(124, 58, 237, 0.4);
+  color: #7c3aed;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+.status-dropdown-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Status circle (small) */
+.status-circle-small {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px currentColor;
+  animation: driverPulse 2s ease-in-out infinite;
+}
+
+.status-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: #9ca3af;
+  margin-left: 2px;
+}
+
+/* Dropdown menu */
+.status-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow:
+    0 20px 60px rgba(74, 144, 226, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+    linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  min-width: 200px;
+  z-index: 1000;
+  overflow: hidden;
+  animation: driverFadeInUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Status option */
+.status-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.status-option:last-child { border-bottom: none; }
+
+.status-option:hover:not(:disabled) {
+  background: linear-gradient(90deg, #faf5ff 0%, #f9fafb 100%);
+  color: #7c3aed;
+}
+
+.status-option.active {
+  background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%);
+  color: #7c3aed;
+}
+
+.status-option:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Status circle (large) */
+.status-circle-large {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.circle-shine {
+  position: absolute;
+  top: 3px; left: 5px;
+  width: 10px; height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.option-label {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.check-mark {
+  font-size: 14px;
+  color: #7c3aed;
+  font-weight: 700;
+}
+
+/* Dark theme */
+[data-theme="dark"] .status-dropdown-btn { background: #2d2d2d; border-color: #404040; color: #e0e0e0; }
+[data-theme="dark"] .status-dropdown-menu { background: #2d2d2d; }
+[data-theme="dark"] .status-option { color: #e0e0e0; border-color: #404040; }
+[data-theme="dark"] .status-option:hover { background: #404040; }
+[data-theme="dark"] .status-option.active { background: #3a2d4a; }

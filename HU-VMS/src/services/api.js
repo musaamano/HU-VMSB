@@ -1,5 +1,6 @@
 // API base URL configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3006/api';
+const API_BASE_RAW = import.meta.env.VITE_API_URL || '/api';
+const API_BASE_URL = API_BASE_RAW.replace(/\/$/, ''); // strip trailing slash
 
 // Generic API request handler
 const apiRequest = async (endpoint, options = {}) => {
@@ -14,9 +15,13 @@ const apiRequest = async (endpoint, options = {}) => {
         },
     };
 
+    const requestUrl = endpoint.startsWith('http')
+        ? endpoint
+        : `${API_BASE_URL}${endpoint.startsWith('/') ? endpoint : '/' + endpoint}`;
+
     try {
-        const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-        console.log(`API Request: ${API_BASE_URL}${endpoint}`, response.status);
+        const response = await fetch(requestUrl, config);
+        console.log('API Request:', requestUrl, 'status:', response.status);
 
         if (!response.ok) {
             const errorText = await response.text();
