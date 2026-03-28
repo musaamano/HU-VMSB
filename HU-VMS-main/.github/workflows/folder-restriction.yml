@@ -1,0 +1,40 @@
+name: Folder Restriction
+
+on:
+  push:
+    branches:
+      - dame-user     # Dame's branch
+      - musa-driver   # Musa's branch
+
+jobs:
+  restrict:
+    runs-on: windows-latest   # Use Windows runner
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check folder restrictions
+        shell: powershell
+        run: |
+          # Get list of changed files
+          $changes = git diff --name-only $env:GITHUB_EVENT_BEFORE $env:GITHUB_SHA
+
+          # Determine branch
+          $branch = $env:GITHUB_REF -replace 'refs/heads/', ''
+
+          # Set allowed folder based on branch
+          if ($branch -eq "dame-user") {
+              $allowed = "src/pages/user/"
+          } elseif ($branch -eq "musa-driver") {
+              $allowed = "src/pages/driver/"
+          } else {
+              Write-Host "No restrictions set for branch $branch"
+              exit 0
+          }
+
+          # Find forbidden changes
+          $forbidden = $changes | Where-Object { $_ -notlike "$allowed*" }
+
+          if ($forbidden) {
+              Write-Host "Error: You can only change files under $allowed"
+              Write-Host "Forbidden files:`n$forbidden"
+              exit 1
+          }
