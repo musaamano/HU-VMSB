@@ -166,10 +166,14 @@ const DriverDashboard = ({ onLogout }) => {
   const loadNotifications = async () => {
     try {
       const data = await driverService.getNotifications();
-      const newUnread = Array.isArray(data) ? data.filter(n => !n.read).length : 0;
-      if (newUnread > prevUnreadCount) playNotificationSound();
-      setPrevUnreadCount(newUnread);
-      setNotifications(Array.isArray(data) ? data : []);
+      const list = Array.isArray(data) ? data : [];
+      const newUnread = list.filter(n => !n.read).length;
+      
+      if (newUnread > unreadCount) {
+        playNotificationSound();
+      }
+      
+      setNotifications(list);
       setUnreadCount(newUnread);
     } catch (error) {
       console.error('Failed to load notifications:', error);
@@ -544,13 +548,13 @@ const DriverDashboard = ({ onLogout }) => {
                     <p>No notifications</p>
                   </div>
                 ) : (
-                  notifications.slice(0, 5).map(notification => (
-                    <div key={notification.id} className={`driver-notification-item ${notification.read ? 'read' : 'unread'} ${notification.type || ''}`}>
+                  notifications.slice(0, 8).map(notification => (
+                    <div key={notification._id || notification.id} className={`driver-notification-item ${notification.read ? 'read' : 'unread'} ${notification.type || ''}`}>
                       <div className="driver-notification-icon">
                         {notification.type === 'alert' && '⚠️'}
                         {notification.type === 'success' && '✓'}
                         {notification.type === 'request' && '📋'}
-                        {(!notification.type || notification.type === 'info') && 'ℹ️'}
+                        {(!notification.type || notification.type === 'info' || notification.type === 'trip_assignment' || notification.type === 'trip_update') && '🚗'}
                       </div>
                       <div className="driver-notification-content">
                         <strong className="driver-notification-title">{notification.title}</strong>
@@ -565,6 +569,7 @@ const DriverDashboard = ({ onLogout }) => {
                               setShowNotifications(false);
                               setActiveView(ACTION_CONFIG[notification.type].view);
                             }}
+                            className="driver-notif-action-btn"
                             style={{ marginTop: 8, padding: '6px 14px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
                           >
                             {ACTION_CONFIG[notification.type].label} <span style={{fontSize: 12}}>→</span>

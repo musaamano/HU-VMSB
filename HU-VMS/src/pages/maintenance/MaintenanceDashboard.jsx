@@ -139,7 +139,7 @@ export default function MaintenanceDashboard() {
 
   useEffect(() => {
     load();
-    const interval = setInterval(load, 30000);
+    const interval = setInterval(load, 15000);
     return () => clearInterval(interval);
   }, []);
 

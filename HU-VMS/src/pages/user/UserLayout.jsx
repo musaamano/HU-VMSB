@@ -24,15 +24,32 @@ const UserLayout = ({ onLogout }) => {
     const user = getCurrentUser();
     setCurrentUser(user);
     loadNotifications();
-    const interval = setInterval(loadNotifications, 30000); // Refresh every 30 seconds
+    const interval = setInterval(loadNotifications, 15000); // Refresh every 15 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [unreadCount]);
+
+  const playChime = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+      osc.start(); osc.stop(ctx.currentTime + 0.2);
+    } catch (e) {}
+  };
 
   const loadNotifications = async () => {
     try {
       const data = await getUserNotifications();
-      const newUnread = Array.isArray(data) ? data.filter(n => !n.read).length : 0;
-      setNotifications(Array.isArray(data) ? data : []);
+      const list = Array.isArray(data) ? data : [];
+      const newUnread = list.filter(n => !n.read).length;
+      if (newUnread > unreadCount) playChime();
+      setNotifications(list);
       setUnreadCount(newUnread);
     } catch (error) {
       console.error('Failed to load notifications:', error);

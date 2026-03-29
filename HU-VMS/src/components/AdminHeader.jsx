@@ -8,8 +8,24 @@ import './AdminHeader.css';
 const AdminHeader = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [prevCount, setPrevCount] = useState(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const navigate = useNavigate();
+
+  const playChime = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+      osc.start(); osc.stop(ctx.currentTime + 0.5);
+    } catch (e) {}
+  };
 
   // Load real unread count from DB
   useEffect(() => {
@@ -19,7 +35,16 @@ const AdminHeader = () => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
       })
         .then(r => r.json())
-        .then(data => { if (Array.isArray(data)) setNotificationCount(data.filter(n => !n.read).length); })
+        .then(data => { 
+          if (Array.isArray(data)) {
+            const newUnread = data.filter(n => !n.read).length;
+            setNotificationCount(newUnread);
+            setNotificationCount(current => {
+              if (newUnread > current) playChime();
+              return newUnread;
+            });
+          }
+        })
         .catch(() => {});
     };
     loadCount();

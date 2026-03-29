@@ -56,6 +56,21 @@ const TransportHeader = ({ onLogout, toggleSidebar, isSidebarOpen }) => {
     return () => document.removeEventListener('mousedown', close);
   }, []);
 
+  const playChime = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+      osc.start(); osc.stop(ctx.currentTime + 0.2);
+    } catch (e) {}
+  };
+
   // Load unread notification count on mount and poll every 30s
   useEffect(() => {
     const loadCount = () => {
@@ -64,11 +79,19 @@ const TransportHeader = ({ onLogout, toggleSidebar, isSidebarOpen }) => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       })
         .then(r => r.json())
-        .then(data => { if (Array.isArray(data)) setNotifCount(data.filter(n => !n.read).length); })
+        .then(data => { 
+          if (Array.isArray(data)) {
+            const newCount = data.filter(n => !n.read).length;
+            setNotifCount(current => {
+              if (newCount > current) playChime();
+              return newCount;
+            });
+          }
+        })
         .catch(() => {});
     };
     loadCount();
-    const interval = setInterval(loadCount, 30000);
+    const interval = setInterval(loadCount, 15000);
     return () => clearInterval(interval);
   }, []);
 

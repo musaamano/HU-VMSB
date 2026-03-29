@@ -172,9 +172,24 @@ const GateSecurityLayout = ({ onLogout }) => {
   useEffect(() => {
     loadNotifications();
     // Refresh notifications every 30 seconds
-    const interval = setInterval(loadNotifications, 30000);
+    const interval = setInterval(loadNotifications, 15000);
     return () => clearInterval(interval);
-  }, []);
+  }, [unreadCount]);
+
+  const playChime = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+      osc.start(); osc.stop(ctx.currentTime + 0.2);
+    } catch (e) {}
+  };
 
   const loadNotifications = () => {
     // Mock notifications for gate security officer
@@ -203,26 +218,12 @@ const GateSecurityLayout = ({ onLogout }) => {
         read: false,
         type: 'request'
       },
-      {
-        id: 4,
-        title: 'Shift Report Generated',
-        message: 'Your shift report has been generated successfully',
-        createdAt: new Date(Date.now() - 2 * 3600000).toISOString(),
-        read: true,
-        type: 'success'
-      },
-      {
-        id: 5,
-        title: 'System Maintenance',
-        message: 'ALPR camera system maintenance scheduled for tomorrow',
-        createdAt: new Date(Date.now() - 4 * 3600000).toISOString(),
-        read: true,
-        type: 'info'
-      }
     ];
 
+    const newUnread = mockNotifications.filter(n => !n.read).length;
+    if (newUnread > unreadCount) playChime();
     setNotifications(mockNotifications);
-    setUnreadCount(mockNotifications.filter(n => !n.read).length);
+    setUnreadCount(newUnread);
   };
 
   const markAsRead = (notificationId) => {

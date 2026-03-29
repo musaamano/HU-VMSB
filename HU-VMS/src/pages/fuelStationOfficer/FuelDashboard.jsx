@@ -20,14 +20,41 @@ const FuelDashboard = () => {
   const [stats, setStats]     = useState(null);
   const [recent, setRecent]   = useState([]);
   const [loading, setLoading] = useState(true);
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  const playChime = () => {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+      osc.start(); osc.stop(ctx.currentTime + 0.2);
+    } catch (e) {}
+  };
 
   const load = async () => {
     setLoading(true);
     try {
-      const [dash, txns] = await Promise.all([
+      const token = localStorage.getItem('authToken');
+      const [dash, txns, notifs] = await Promise.all([
         authReq(`${BASE}/fuel/dashboard`).catch(() => ({})),
         authReq(`${BASE}/fuel/transactions`).catch(() => []),
+        fetch(`${BASE}/fuel/notifications`, {
+          headers: { Authorization: `Bearer ${token}` }
+        }).then(r => r.json()).catch(() => [])
       ]);
+
+      const newUnread = Array.isArray(notifs) ? notifs.filter(n => !n.read).length : 0;
+      setUnreadCount(current => {
+        if (newUnread > current) playChime();
+        return newUnread;
+      });
+
       setStats(dash);
       setRecent(Array.isArray(txns) ? txns.slice(0, 8) : []);
     } finally {
@@ -35,7 +62,26 @@ const FuelDashboard = () => {
     }
   };
 
-  useEffect(() => { load(); }, []);
+  const poll = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const notifs = await fetch(`${BASE}/fuel/notifications`, {
+          headers: { Authorization: `Bearer ${token}` }
+      }).then(r => r.json()).catch(() => []);
+      
+      const newUnread = Array.isArray(notifs) ? notifs.filter(n => !n.read).length : 0;
+      setUnreadCount(current => {
+        if (newUnread > current) playChime();
+        return newUnread;
+      });
+    } catch (e) {}
+  };
+
+  useEffect(() => { 
+    load();
+    const interval = setInterval(poll, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   if (loading) return (
     <div className="fuel-dashboard-content">
