@@ -1,0 +1,89 @@
+═══════════════════════════════════════════════════════════════
+    QUICK GITHUB PUSH CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+Follow these steps IN ORDER:
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 1: Open Terminal in VS Code                           │
+│ Press: Ctrl + ` (backtick key)                             │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 2: Navigate to Repository                             │
+│ Type: cd HU-VMS                                             │
+│ Press: Enter                                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 3: Check Status (Optional)                            │
+│ Type: git status                                            │
+│ Press: Enter                                                │
+│ (You'll see modified files in red)                         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 4: Add All Changes                                    │
+│ Type: git add .                                             │
+│ Press: Enter                                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 5: Commit Changes                                     │
+│ Copy and paste this entire line:                           │
+│                                                             │
+│ git commit -m "Add settings with photo upload and themes"  │
+│                                                             │
+│ Press: Enter                                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 6: Push to GitHub                                     │
+│ Type: git push origin main                                  │
+│ Press: Enter                                                │
+│                                                             │
+│ If it asks for username/password:                          │
+│ - Username: your GitHub username                           │
+│ - Password: your Personal Access Token (NOT your password!)│
+└─────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+
+✅ DONE! Your changes are now on GitHub!
+
+═══════════════════════════════════════════════════════════════
+
+NEED A PERSONAL ACCESS TOKEN?
+
+1. Go to: https://github.com/settings/tokens
+2. Click: "Generate new token (classic)"
+3. Name it: "HU-VMS-Dev"
+4. Check: "repo" checkbox
+5. Click: "Generate token"
+6. COPY THE TOKEN (you won't see it again!)
+7. Use it as your password when pushing
+
+═══════════════════════════════════════════════════════════════
+
+COMMON ISSUES:
+
+❌ "not a git repository"
+   → Make sure you ran: cd HU-VMS
+
+❌ "Permission denied"
+   → You need a Personal Access Token (see above)
+
+❌ "Your branch is behind"
+   → Run: git pull origin main
+   → Then try: git push origin main again
+
+═══════════════════════════════════════════════════════════════
+
+ALL COMMANDS (Copy & Paste One by One):
+
+cd HU-VMS
+git add .
+git commit -m "Add settings with photo upload and themes"
+git push origin main
+
+═══════════════════════════════════════════════════════════════

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X, Bell, Clock, CheckCircle, Inbox, ClipboardList, AlertTriangle, Activity, Wrench } from 'lucide-react';
 import './TransportNotificationPanel.css';
 
@@ -26,6 +27,17 @@ const TYPE_ICON = {
 
 const SEVERITY_COLOR = { high: '#ef4444', medium: '#f59e0b', normal: '#6366f1', low: '#94a3b8' };
 
+const ACTION_CONFIG = {
+  trip_update:       { route: '/transport/requests', label: 'Review Request' },
+  trip_assignment:   { route: '/transport/trips', label: 'View Trip' },
+  vehicle_alert:     { route: '/transport/maintenance', label: 'View Maintenance' },
+  complaint:         { route: '/transport/complaints', label: 'View Complaints' },
+  schedule_reminder: { route: '/transport/tracking', label: 'View Tracking' },
+  gate_alert:        { route: '/transport/dashboard', label: 'View Gate Logs' },
+  approval:          { route: '/transport/dashboard', label: 'View Approvals' },
+  system:            null
+};
+
 const timeAgo = (d) => {
   if (!d) return '—';
   const s = Math.floor((Date.now() - new Date(d)) / 1000);
@@ -36,6 +48,7 @@ const timeAgo = (d) => {
 };
 
 const TransportNotificationPanel = ({ isOpen, onClose, onBadgeCount }) => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -142,6 +155,19 @@ const TransportNotificationPanel = ({ isOpen, onClose, onBadgeCount }) => {
                       <Clock size={11} /> {timeAgo(n.createdAt)}
                     </span>
                   </div>
+                  {ACTION_CONFIG[n.type] && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!n.read) markRead(n._id);
+                        onClose();
+                        navigate(ACTION_CONFIG[n.type].route);
+                      }}
+                      style={{ marginTop: 10, padding: '6px 12px', background: '#eef2ff', color: '#6366f1', border: '1px solid #c7d2fe', borderRadius: 6, cursor: 'pointer', fontSize: 11, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}
+                    >
+                      {ACTION_CONFIG[n.type].label} <span>→</span>
+                    </button>
+                  )}
                 </div>
                 {n.read && (
                   <div className="tnp-item-status">

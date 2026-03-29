@@ -1,18 +1,34 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NotificationPanel.css';
 
 const TYPE_ICON = {
-  trip_update:     '🚗',
-  trip_assignment: '📋',
-  approval:        '✅',
-  vehicle_alert:   '🔧',
-  fuel_alert:      '⛽',
-  complaint:       '⚠️',
-  system:          '📢',
-  gate_alert:      '🔐',
+  trip_update:       '🚗',
+  trip_assignment:   '📋',
+  approval:          '✅',
+  vehicle_alert:     '🔧',
+  fuel_alert:        '⛽',
+  fuel_request:      '⛽',
+  schedule_reminder: '⏰',
+  complaint:         '⚠️',
+  system:            '📢',
+  gate_alert:        '🔐',
 };
 
 const SEV_COLOR = { high: '#ef4444', medium: '#f59e0b', normal: '#6366f1', low: '#94a3b8' };
+
+const ACTION_CONFIG = {
+  trip_update:       { route: '/admin/user-request-report', label: 'Review Trip Request' },
+  trip_assignment:   { route: '/admin/vehicle-trip-report', label: 'View Trip Details' },
+  fuel_alert:        { route: '/admin/fuel-requests', label: 'Review Fuel Request' },
+  fuel_request:      { route: '/admin/fuel-requests', label: 'Review Fuel Request' },
+  schedule_reminder: { route: '/admin/control-center', label: 'View Schedule' },
+  vehicle_alert:     { route: '/admin/control-center', label: 'Review Maintenance' },
+  complaint:         { route: '/admin/control-center', label: 'View Complaints' },
+  gate_alert:        { route: '/admin/control-center', label: 'View Gate Activity' },
+  approval:          { route: '/admin/control-center', label: 'View Approvals' },
+  system:            null
+};
 
 const timeAgo = (d) => {
   if (!d) return '—';
@@ -24,6 +40,7 @@ const timeAgo = (d) => {
 };
 
 const NotificationPanel = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading]             = useState(false);
   const [filter, setFilter]               = useState('all');
@@ -133,6 +150,18 @@ const NotificationPanel = ({ isOpen, onClose }) => {
                     <p style={{ fontSize: 11, color: '#94a3b8', marginTop: 8 }}>
                       {new Date(n.createdAt).toLocaleString()}
                     </p>
+                    {ACTION_CONFIG[n.type] && (
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onClose();
+                          navigate(ACTION_CONFIG[n.type].route);
+                        }}
+                        style={{ marginTop: 12, padding: '8px 14px', background: '#6366f1', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 600, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px' }}
+                      >
+                        {ACTION_CONFIG[n.type].label} <span>→</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               )}

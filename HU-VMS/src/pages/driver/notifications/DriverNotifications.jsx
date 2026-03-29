@@ -11,7 +11,17 @@ const TYPE_ICON = {
   system: '📢',
 };
 
-const DriverNotifications = () => {
+const ACTION_CONFIG = {
+  trip_assignment:   { view: 'trips', label: 'View Assignments' },
+  trip_update:       { view: 'trips', label: 'View Trips' },
+  fuel_alert:        { view: 'fuel', label: 'View Fuel Request' },
+  vehicle_alert:     { view: 'vehicle', label: 'View Vehicle' },
+  complaint:         { view: 'submit-complaint', label: 'View Complaint' },
+  approval:          { view: 'trips', label: 'View Trip' },
+  system:            null
+};
+
+const DriverNotifications = ({ setActiveView }) => {
   const [notifications, setNotifications] = useState([]);
   const [filter, setFilter]   = useState('all');
   const [loading, setLoading] = useState(true);
@@ -91,7 +101,21 @@ const DriverNotifications = () => {
               <div className="notification-content">
                 <h4>{n.title}</h4>
                 <p>{n.message}</p>
-                <span className="notification-time">{new Date(n.createdAt).toLocaleString()}</span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 12 }}>
+                  <span className="notification-time" style={{ color: '#94a3b8', fontSize: 12 }}>{new Date(n.createdAt).toLocaleString()}</span>
+                  {ACTION_CONFIG[n.type] && setActiveView && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!n.read) markAsRead(n._id);
+                        setActiveView(ACTION_CONFIG[n.type].view);
+                      }}
+                      style={{ padding: '6px 14px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 12, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                    >
+                      {ACTION_CONFIG[n.type].label} <span>→</span>
+                    </button>
+                  )}
+                </div>
               </div>
               {!n.read && <div className="unread-indicator"></div>}
             </div>

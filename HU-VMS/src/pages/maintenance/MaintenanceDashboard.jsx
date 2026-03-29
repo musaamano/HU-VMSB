@@ -35,6 +35,12 @@ const NAV_ITEMS = [
   { key: 'reports', icon: '📄', label: 'Reports' },
 ];
 
+const ACTION_CONFIG = {
+  vehicle_alert: { view: 'reported', label: 'View Request' },
+  maintenance_update: { view: 'reported', label: 'View Update' },
+  system: null
+};
+
 export default function MaintenanceDashboard() {
   const navigate = useNavigate();
   const user = getCurrentUser();
@@ -731,10 +737,19 @@ export default function MaintenanceDashboard() {
                       }}>
                         {selectedNotif.severity?.toUpperCase() || 'NORMAL'}
                       </span>
-                      <button onClick={() => { setActiveView('reported'); setShowNotifications(false); setSelectedNotif(null); }}
-                        style={{ fontSize: 12, fontWeight: 600, padding: '3px 12px', borderRadius: 20, background: '#6366f1', color: '#fff', border: 'none', cursor: 'pointer' }}>
-                        View Active Requests →
-                      </button>
+                      {ACTION_CONFIG[selectedNotif.type] && (
+                        <button
+                          onClick={() => {
+                            if (!selectedNotif.read) markRead(selectedNotif._id);
+                            setActiveView(ACTION_CONFIG[selectedNotif.type].view);
+                            setShowNotifications(false);
+                            setSelectedNotif(null);
+                          }}
+                          style={{ fontSize: 12, fontWeight: 600, padding: '4px 14px', borderRadius: 20, background: '#6366f1', color: '#fff', border: 'none', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                        >
+                          {ACTION_CONFIG[selectedNotif.type].label} <span>→</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -760,7 +775,20 @@ export default function MaintenanceDashboard() {
                         <p className="driver-notification-message" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 220 }}>
                           {n.message?.slice(0, 70)}{n.message?.length > 70 ? '...' : ''}
                         </p>
-                        <span className="driver-notification-time">{new Date(n.createdAt).toLocaleString()}</span>
+                        <span className="driver-notification-time" style={{ display: 'block', marginBottom: 8 }}>{new Date(n.createdAt).toLocaleString()}</span>
+                        {ACTION_CONFIG[n.type] && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!n.read) markRead(n._id);
+                              setActiveView(ACTION_CONFIG[n.type].view);
+                              setShowNotifications(false);
+                            }}
+                            style={{ padding: '6px 12px', background: '#6366f1', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                          >
+                            {ACTION_CONFIG[n.type].label} <span>→</span>
+                          </button>
+                        )}
                       </div>
                       {!n.read && <div className="driver-notification-unread-dot" />}
                     </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TransportNotifications.css';
 
 const BASE = '/api';
@@ -34,6 +35,17 @@ const TYPE_LABEL = {
   system:          'System',
 };
 
+const ACTION_CONFIG = {
+  trip_update:       { route: '/transport/requests', label: 'Review Request' },
+  trip_assignment:   { route: '/transport/trips', label: 'View Trip' },
+  vehicle_alert:     { route: '/transport/maintenance', label: 'View Maintenance' },
+  complaint:         { route: '/transport/complaints', label: 'View Complaints' },
+  schedule_reminder: { route: '/transport/tracking', label: 'View Tracking' },
+  gate_alert:        { route: '/transport/dashboard', label: 'View Gate Logs' },
+  approval:          { route: '/transport/dashboard', label: 'View Approvals' },
+  system:            null
+};
+
 const timeAgo = (d) => {
   if (!d) return '—';
   const s = Math.floor((Date.now() - new Date(d)) / 1000);
@@ -44,6 +56,7 @@ const timeAgo = (d) => {
 };
 
 const TransportNotifications = () => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [filter, setFilter]   = useState('all');
   const [loading, setLoading] = useState(true);
@@ -142,6 +155,18 @@ const TransportNotifications = () => {
                     {TYPE_LABEL[n.type] || n.type}
                   </span>
                 </div>
+                {ACTION_CONFIG[n.type] && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!n.read) markRead(n._id);
+                      navigate(ACTION_CONFIG[n.type].route);
+                    }}
+                    style={{ marginTop: 12, padding: '8px 16px', background: '#6366f1', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 13, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                  >
+                    {ACTION_CONFIG[n.type].label} <span style={{fontSize: 14}}>→</span>
+                  </button>
+                )}
               </div>
               {!n.read && <div className="unread-indicator"></div>}
             </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './FuelNotifications.css';
 
 const BASE = '/api';
@@ -11,7 +12,15 @@ const req = async (url, opts = {}) => {
     return data;
 };
 
+const ACTION_CONFIG = {
+  fuel_request:      { route: '/fuel/requests', label: 'View Requests' },
+  approval:          { route: '/fuel/requests', label: 'View Approvals' },
+  fuel_alert:        { route: '/fuel/inventory', label: 'View Inventory' },
+  system:            null
+};
+
 const FuelNotifications = () => {
+    const navigate = useNavigate();
     const [notifications, setNotifications] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
@@ -37,16 +46,25 @@ const FuelNotifications = () => {
         }
     };
 
-    const markAsRead = (notificationId) => {
-        setNotifications(prev =>
-            prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
-        );
-        setUnreadCount(prev => Math.max(0, prev - 1));
+    const markAsRead = async (id) => {
+        if (!id) return;
+        try {
+            await req(`${BASE}/fuel/notifications/${id}/read`, { method: 'PUT' });
+            setNotifications(prev => prev.map(n => (n._id === id || n.id === id) ? { ...n, read: true } : n));
+            setUnreadCount(prev => Math.max(0, prev - 1));
+        } catch (e) {
+            console.error('Failed to mark read:', e);
+        }
     };
 
-    const markAllAsRead = () => {
-        setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-        setUnreadCount(0);
+    const markAllAsRead = async () => {
+        try {
+            await req(`${BASE}/fuel/notifications/read-all`, { method: 'PUT' });
+            setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+            setUnreadCount(0);
+        } catch (e) {
+            console.error('Failed to mark all read:', e);
+        }
     };
 
     const deleteNotification = (notificationId) => {
@@ -163,6 +181,19 @@ const FuelNotifications = () => {
                                 <span className="fuel-notification-card-time">
                                     {formatNotificationTime(notification.createdAt)}
                                 </span>
+                                {ACTION_CONFIG[notification.type] && (
+                                  <button
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      const nid = notification._id || notification.id;
+                                      if (!notification.read && nid) markAsRead(nid);
+                                      navigate(ACTION_CONFIG[notification.type].route);
+                                    }}
+                                    style={{ marginTop: 12, padding: '8px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 13, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                                  >
+                                    {ACTION_CONFIG[notification.type].label} <span style={{fontSize: 14}}>→</span>
+                                  </button>
+                                )}
                             </div>
                             <div className="fuel-notification-card-actions">
                                 {!notification.read && (

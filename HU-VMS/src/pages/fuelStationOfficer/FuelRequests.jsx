@@ -77,12 +77,22 @@ const FuelRequests = () => {
       {/* Stats */}
       <div className="fuel-stats-grid">
         {[
-          { label: 'Approved (Ready)', count: counts.Approved, color: '#22c55e', icon: '✓' },
-          { label: 'Pending (Awaiting Admin)', count: counts.Pending, color: '#f59e0b', icon: '⏳' },
-          { label: 'Dispensed', count: counts.Dispensed, color: '#6366f1', icon: '⛽' },
-          { label: 'Rejected', count: counts.Rejected, color: '#ef4444', icon: '✗' },
+          { filterName: 'Approved', label: 'Approved (Ready)', count: counts.Approved, color: '#22c55e', icon: '✓' },
+          { filterName: 'Pending', label: 'Pending (Awaiting Admin)', count: counts.Pending, color: '#f59e0b', icon: '⏳' },
+          { filterName: 'Dispensed', label: 'Dispensed', count: counts.Dispensed, color: '#6366f1', icon: '⛽' },
+          { filterName: 'Rejected', label: 'Rejected', count: counts.Rejected, color: '#ef4444', icon: '✗' },
         ].map(s => (
-          <div key={s.label} className="fuel-stat-card" style={{ borderTop: `3px solid ${s.color}` }}>
+          <div 
+            key={s.label} 
+            className="fuel-stat-card" 
+            style={{ 
+              borderTop: `3px solid ${s.color}`, 
+              cursor: 'pointer',
+              transform: filter === s.filterName ? 'scale(1.02)' : 'none',
+              boxShadow: filter === s.filterName ? `0 4px 12px ${s.color}33` : ''
+            }}
+            onClick={() => setFilter(s.filterName)}
+          >
             <div className="fuel-stat-icon" style={{ color: s.color }}>{s.icon}</div>
             <div className="fuel-stat-value" style={{ color: s.color }}>{s.count}</div>
             <div className="fuel-stat-label">{s.label}</div>

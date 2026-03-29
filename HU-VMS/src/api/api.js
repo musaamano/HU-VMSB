@@ -73,6 +73,7 @@ export const assignTrip     = (id, d) => req(`${BASE_URL}/transport/trips/${id}/
 export const deleteRequest  = (id) => req(`${BASE_URL}/user/requests/${id}`, { method: 'DELETE' });
 export const startTrip      = (id) => req(`${BASE_URL}/transport/trips/${id}/status`, { method: 'PUT', body: JSON.stringify({ status: 'started' }) });
 export const completeTrip   = (id) => req(`${BASE_URL}/transport/trips/${id}/status`, { method: 'PUT', body: JSON.stringify({ status: 'completed' }) });
+export const cancelAdminTrip = (id, reason) => req(`${BASE_URL}/admin/trips/${id}/cancel`, { method: 'PUT', body: JSON.stringify({ reason }) });
 
 // Fuel request flow: Driver submits → Admin approves → Fuel station dispenses
 export const getAdminFuelRequests    = () => req(`${BASE_URL}/admin/fuel-requests`);

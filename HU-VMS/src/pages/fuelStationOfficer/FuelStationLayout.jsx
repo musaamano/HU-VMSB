@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import './fuelstation.css';
+const ACTION_CONFIG = {
+  fuel_request:      { route: '/fuel/requests', label: 'View Requests' },
+  approval:          { route: '/fuel/requests', label: 'View Approvals' },
+  fuel_alert:        { route: '/fuel/inventory', label: 'View Inventory' },
+  system:            null
+};
 
 const FuelStationLayout = ({ onLogout }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -204,16 +210,26 @@ const FuelStationLayout = ({ onLogout }) => {
     }
   };
 
-  const markAsRead = (notificationId) => {
-    setNotifications(prev =>
-      prev.map(n => n.id === notificationId ? { ...n, read: true } : n)
-    );
-    setUnreadCount(prev => Math.max(0, prev - 1));
+  const markAsRead = async (id) => {
+    if (!id) return;
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch(`/api/fuel/notifications/${id}/read`, { method: 'PUT', headers: { Authorization: `Bearer ${token}` }});
+      setNotifications(prev => {
+        const next = prev.map(n => (n._id === id || n.id === id) ? { ...n, read: true } : n);
+        setUnreadCount(next.filter(n => !n.read).length);
+        return next;
+      });
+    } catch(e) {}
   };
 
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-    setUnreadCount(0);
+  const markAllAsRead = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch('/api/fuel/notifications/read-all', { method: 'PUT', headers: { Authorization: `Bearer ${token}` }});
+      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+      setUnreadCount(0);
+    } catch(e) {}
   };
 
   const toggleMobileMenu = () => {
@@ -440,6 +456,20 @@ const FuelStationLayout = ({ onLogout }) => {
                         <span className="fuel-notification-time">
                           {formatNotificationTime(notification.createdAt)}
                         </span>
+                        {ACTION_CONFIG[notification.type] && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const nid = notification._id || notification.id;
+                              if (!notification.read && nid) markAsRead(nid);
+                              setShowNotifications(false);
+                              navigate(ACTION_CONFIG[notification.type].route);
+                            }}
+                            style={{ marginTop: 8, padding: '6px 14px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                          >
+                            {ACTION_CONFIG[notification.type].label} <span style={{fontSize: 12}}>→</span>
+                          </button>
+                        )}
                       </div>
                       {!notification.read && <div className="fuel-notification-unread-dot"></div>}
                     </div>

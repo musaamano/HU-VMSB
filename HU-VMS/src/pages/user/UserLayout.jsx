@@ -2,6 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
 import { getCurrentUser, getUserNotifications } from '../../api/api';
 import './user.css';
+const ACTION_CONFIG = {
+  trip_update:       { route: '/user/my-requests', label: 'View Request Status' },
+  trip_assignment:   { route: '/user/my-requests', label: 'View Request Status' },
+  approval:          { route: '/user/my-requests', label: 'View Request Status' },
+  complaint:         { route: '/user/dashboard', label: 'View Dashboard' },
+  system:            null
+};
 
 const UserLayout = ({ onLogout }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,9 +54,31 @@ const UserLayout = ({ onLogout }) => {
     navigate('/login');
   };
 
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-    setUnreadCount(0);
+  const markAllAsRead = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch('/api/user/notifications/read-all', {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+      setUnreadCount(0);
+    } catch (e) { console.error(e); }
+  };
+
+  const markRead = async (id) => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch(`/api/user/notifications/${id}/read`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setNotifications(prev => {
+        const next = prev.map(n => n._id === id ? { ...n, read: true } : n);
+        setUnreadCount(next.filter(n => !n.read).length);
+        return next;
+      });
+    } catch (e) { console.error(e); }
   };
 
   const formatNotificationTime = (timestamp) => {
@@ -234,11 +263,25 @@ const UserLayout = ({ onLogout }) => {
                         {notification.type === 'approval' && '✅'}
                         {notification.type === 'trip_update' && '🚗'}
                         {(!notification.type || notification.type === 'info') && 'ℹ️'}
+                        {notification.type === 'trip_assignment' && '📋'}
                       </div>
                       <div className="user-notification-content">
                         <strong className="user-notification-title">{notification.title}</strong>
                         <p className="user-notification-message">{notification.message}</p>
                         <span className="user-notification-time">{formatNotificationTime(notification.createdAt)}</span>
+                        {ACTION_CONFIG[notification.type] && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!notification.read) markRead(notification._id);
+                              setShowNotifications(false);
+                              navigate(ACTION_CONFIG[notification.type].route);
+                            }}
+                            style={{ marginTop: 8, padding: '6px 14px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                          >
+                            {ACTION_CONFIG[notification.type].label} <span style={{fontSize: 12}}>→</span>
+                          </button>
+                        )}
                       </div>
                       {!notification.read && <div className="user-notification-unread-dot"></div>}
                     </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Notifications.css';
 
 const BASE = '/api';
@@ -34,7 +35,16 @@ const TYPE_CLASS = {
   system:          'notification-default',
 };
 
+const ACTION_CONFIG = {
+  trip_update:       { route: '/user/my-requests', label: 'View Request Status' },
+  trip_assignment:   { route: '/user/my-requests', label: 'View Request Status' },
+  approval:          { route: '/user/my-requests', label: 'View Request Status' },
+  complaint:         { route: '/user/dashboard', label: 'View Dashboard' },
+  system:            null
+};
+
 const Notifications = () => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -102,6 +112,18 @@ const Notifications = () => {
                   </span>
                 </div>
                 <p>{n.message}</p>
+                {ACTION_CONFIG[n.type] && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!n.read) markRead(n._id);
+                      navigate(ACTION_CONFIG[n.type].route);
+                    }}
+                    style={{ marginTop: 12, padding: '6px 16px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer', fontSize: 13, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                  >
+                    {ACTION_CONFIG[n.type].label} <span style={{fontSize: 14}}>→</span>
+                  </button>
+                )}
               </div>
               {!n.read && <span className="unread-dot"></span>}
             </div>

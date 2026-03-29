@@ -16,6 +16,16 @@ import VehicleIssueReport from './vehicle-report/VehicleIssueReport';
 import DriverSettings from './DriverSettings';
 import driverService from '../../services/driverService';
 
+const ACTION_CONFIG = {
+  trip_assignment:   { view: 'trips', label: 'View Assignments' },
+  trip_update:       { view: 'trips', label: 'View Trips' },
+  fuel_alert:        { view: 'fuel', label: 'View Fuel Request' },
+  vehicle_alert:     { view: 'vehicle', label: 'View Vehicle' },
+  complaint:         { view: 'submit-complaint', label: 'View Complaint' },
+  approval:          { view: 'trips', label: 'View Trip' },
+  system:            null
+};
+
 const DriverDashboard = ({ onLogout }) => {
   const [activeView, setActiveView] = useState('overview');
   const [showNotifications, setShowNotifications] = useState(false);
@@ -186,9 +196,30 @@ const DriverDashboard = ({ onLogout }) => {
     }
   };
 
-  const markAllAsRead = () => {
-    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-    setUnreadCount(0);
+  const markAllAsRead = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch('/api/driver/notifications/read-all', { method: 'PUT', headers: { Authorization: `Bearer ${token}` }});
+      setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+      setUnreadCount(0);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const markRead = async (id) => {
+    if (!id) return;
+    try {
+      const token = localStorage.getItem('authToken');
+      await fetch(`/api/driver/notifications/${id}/read`, { method: 'PUT', headers: { Authorization: `Bearer ${token}` }});
+      setNotifications(prev => {
+        const next = prev.map(n => (n._id === id || n.id === id) ? { ...n, read: true } : n);
+        setUnreadCount(next.filter(n => !n.read).length);
+        return next;
+      });
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const formatNotificationTime = (timestamp) => {
@@ -206,7 +237,7 @@ const DriverDashboard = ({ onLogout }) => {
       case 'trips': return <AssignedTrips onTripUpdate={handleTripUpdate} />;
       case 'trip-history': return <TripHistory />;
       case 'vehicle': return <VehicleInfo />;
-      case 'notifications': return <DriverNotifications />;
+      case 'notifications': return <DriverNotifications setActiveView={setActiveView} />;
       case 'submit-complaint': return <SubmitComplaint />;
       case 'gate-verification': return <ExitEntryVerification />;
       case 'reports': return <DriverReports />;
@@ -525,6 +556,20 @@ const DriverDashboard = ({ onLogout }) => {
                         <strong className="driver-notification-title">{notification.title}</strong>
                         <p className="driver-notification-message">{notification.message}</p>
                         <span className="driver-notification-time">{formatNotificationTime(notification.createdAt)}</span>
+                        {ACTION_CONFIG[notification.type] && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const nid = notification._id || notification.id;
+                              if (!notification.read && nid) markRead(nid);
+                              setShowNotifications(false);
+                              setActiveView(ACTION_CONFIG[notification.type].view);
+                            }}
+                            style={{ marginTop: 8, padding: '6px 14px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer', fontSize: 11, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                          >
+                            {ACTION_CONFIG[notification.type].label} <span style={{fontSize: 12}}>→</span>
+                          </button>
+                        )}
                       </div>
                       {!notification.read && <div className="driver-notification-unread-dot"></div>}
                     </div>

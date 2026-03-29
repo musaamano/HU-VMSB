@@ -82,12 +82,17 @@ const FuelReport = () => {
       </div>
 
       {/* Vehicle info strip */}
-      {vehicle && (
+      {vehicle ? (
         <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 10, padding: '12px 16px', marginBottom: '1.5rem', display: 'flex', gap: 24, flexWrap: 'wrap', fontSize: 13 }}>
           <span><strong>Vehicle:</strong> {vehicle.plateNumber} — {vehicle.model}</span>
           <span><strong>Fuel Type:</strong> {vehicle.fuelType}</span>
           <span><strong>Odometer:</strong> {vehicle.odometer?.toLocaleString()} km</span>
           <span><strong>Fuel Level:</strong> {vehicle.fuelLevel}%</span>
+        </div>
+      ) : (
+        <div style={{ background: '#fff7ed', border: '1px solid #ffedd5', borderRadius: 10, padding: '12px 16px', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 12, fontSize: 13, color: '#9a3412' }}>
+          <span style={{ fontSize: 16 }}>⚠️</span>
+          <span>You don't have a vehicle assigned currently. You must have a permanent assignment or be on an active trip to request fuel.</span>
         </div>
       )}
 

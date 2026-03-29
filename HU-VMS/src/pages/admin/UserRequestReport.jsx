@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getRequests } from '../../api/api';
+import { getRequests, cancelAdminTrip } from '../../api/api';
 import ExportButton from '../../components/ExportButton';
 import Pagination from '../../components/Pagination';
 import ReportFilters, { filterByDate } from '../../components/ReportFilters';
@@ -22,6 +22,17 @@ const UserRequestReport = () => {
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, []);
+
+  const handleCancelClick = async (tripId) => {
+    if (!window.confirm("Are you sure you want to cancel this trip as Admin?")) return;
+    try {
+      await cancelAdminTrip(tripId, 'Cancelled by Admin');
+      const data = await getRequests();
+      setRequests(data);
+    } catch (e) {
+      alert("Error: " + e.message);
+    }
+  };
 
   const departments = [...new Set(requests.map(r => r.department).filter(Boolean))].sort();
 
@@ -98,7 +109,7 @@ const UserRequestReport = () => {
               <thead>
                 <tr>
                   <th>#</th><th>User</th><th>Destination</th><th>Purpose</th>
-                  <th>Request Date</th><th>Trip Date</th><th>Priority</th><th>Status</th>
+                  <th>Request Date</th><th>Trip Date</th><th>Priority</th><th>Status</th><th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,6 +128,15 @@ const UserRequestReport = () => {
                     </td>
                     <td>
                       <span className={`status-badge ${getStatusClass(r.status)}`}>{r.status}</span>
+                    </td>
+                    <td>
+                      {r.status !== 'cancelled' && r.status !== 'completed' && r.status !== 'rejected' && (
+                        <button 
+                          onClick={() => handleCancelClick(r._id)} 
+                          style={{ padding: '4px 8px', backgroundColor: '#ef4444', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', fontWeight: 'bold' }}>
+                          Cancel
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}

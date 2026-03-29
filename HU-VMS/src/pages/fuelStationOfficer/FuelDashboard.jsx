@@ -55,7 +55,11 @@ const FuelDashboard = () => {
       </div>
 
       <div className="fuel-stats-grid">
-        <div className="fuel-stat-card orange">
+        <div 
+          className="fuel-stat-card orange"
+          onClick={() => navigate('/fuel/requests')}
+          style={{ cursor: 'pointer', transition: 'transform 0.2s' }}
+        >
           <div className="fuel-stat-icon">⏳</div>
           <div className="fuel-stat-value">{stats?.pendingRequests ?? 0}</div>
           <div className="fuel-stat-label">Pending (Awaiting Admin)</div>
