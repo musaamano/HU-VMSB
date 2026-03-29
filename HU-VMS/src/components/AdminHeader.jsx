@@ -10,7 +10,23 @@ const AdminHeader = () => {
   const [notificationCount, setNotificationCount] = useState(0);
   const [prevCount, setPrevCount] = useState(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem('adminProfilePhoto') || 'https://via.placeholder.com/40'
+  );
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedPhoto = localStorage.getItem('adminProfilePhoto');
+      if (savedPhoto) setProfileImage(savedPhoto);
+    };
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('adminProfileUpdated', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('adminProfileUpdated', handleStorageChange);
+    };
+  }, []);
 
   const playChime = () => {
     try {
@@ -71,7 +87,7 @@ const AdminHeader = () => {
           />
           
           <div className="header-profile" onClick={() => setShowProfileMenu(!showProfileMenu)}>
-            <img src="https://via.placeholder.com/40" alt="Admin" className="header-avatar" />
+            <img src={profileImage} alt="Admin" className="header-avatar" />
             <div className="header-profile-info">
               <span className="header-profile-name">Admin User</span>
               <span className="header-profile-role">Administrator</span>

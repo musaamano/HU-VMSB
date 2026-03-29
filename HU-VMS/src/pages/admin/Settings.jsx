@@ -8,7 +8,9 @@ const Settings = () => {
   const { theme, toggleTheme } = useTheme();
   const [activeTab, setActiveTab] = useState('appearance');
   const currentUser = getCurrentUser();
-  const [profileImage, setProfileImage] = useState(currentUser?.profilePicture || 'https://via.placeholder.com/120');
+  const [profileImage, setProfileImage] = useState(
+    localStorage.getItem('adminProfilePhoto') || currentUser?.profilePicture || 'https://via.placeholder.com/120'
+  );
   const [saving, setSaving] = useState(false);
   const [toast, setToast]   = useState('');
 
@@ -65,7 +67,10 @@ const Settings = () => {
       // Create a preview URL
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfileImage(reader.result);
+        const base64 = reader.result;
+        setProfileImage(base64);
+        localStorage.setItem('adminProfilePhoto', base64);
+        window.dispatchEvent(new CustomEvent('adminProfileUpdated'));
         // Here you would typically upload to your backend
         // uploadToBackend(file);
       };
@@ -74,7 +79,9 @@ const Settings = () => {
   };
 
   const handleRemovePhoto = () => {
+    localStorage.removeItem('adminProfilePhoto');
     setProfileImage('https://via.placeholder.com/120');
+    window.dispatchEvent(new CustomEvent('adminProfileUpdated'));
     // Here you would typically call your backend to remove the photo
     // removePhotoFromBackend();
   };

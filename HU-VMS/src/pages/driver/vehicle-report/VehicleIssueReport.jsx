@@ -66,6 +66,7 @@ const VehicleIssueReport = ({ onClose, onSubmit }) => {
         severity:    form.severity,
         description: form.description,
       });
+      alert('✅ Maintenance issue successfully submitted to Maintenance Office!');
       setSubmitted(true);
       if (onSubmit) onSubmit();
     } catch (err) {
