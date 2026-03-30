@@ -1,0 +1,49 @@
+========================================
+PDF EXPORT - INSTALLATION REQUIRED
+========================================
+
+IMPORTANT: There was an issue with package versions.
+Follow these steps to fix:
+
+STEP 1: Clean Installation
+---------------------------
+In the HU-VMS-main/HU-VMS directory, run:
+
+    rm -rf node_modules package-lock.json
+    
+Or on Windows PowerShell:
+
+    Remove-Item -Recurse -Force node_modules, package-lock.json
+
+Or on Windows Command Prompt:
+
+    rmdir /s /q node_modules
+    del package-lock.json
+
+STEP 2: Reinstall All Packages
+-------------------------------
+    npm install
+
+This will install the correct versions:
+- jspdf: 2.5.1 (not 4.2.0)
+- jspdf-autotable: 3.8.2 (not 5.0.7)
+
+STEP 3: Restart Development Server
+-----------------------------------
+    npm run dev
+
+========================================
+LOCATION: Run these commands from:
+HU-VMS-main/HU-VMS/
+========================================
+
+The PDF export feature is now integrated into:
+✓ Fuel Reports
+✓ Vehicle Issue Reports  
+✓ Complaint Submissions
+
+Once reinstalled with correct versions, the React error
+will be fixed and PDF export will work perfectly.
+
+For detailed troubleshooting, see: FIX_REACT_ERROR.md
+

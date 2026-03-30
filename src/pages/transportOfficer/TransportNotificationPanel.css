@@ -1,0 +1,208 @@
+.tnp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: transparent;
+}
+
+.tnp-panel {
+  position: fixed;
+  top: 60px;
+  right: 24px;
+  width: 360px;
+  max-height: 520px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: tnpSlideIn 0.18s ease-out;
+  z-index: 501;
+}
+
+@keyframes tnpSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tnp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.tnp-header h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.tnp-sub {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+  display: block;
+}
+
+.tnp-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.tnp-close:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.tnp-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.tnp-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  color: #9ca3af;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tnp-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.15s;
+}
+
+.tnp-item:last-child {
+  border-bottom: none;
+}
+
+.tnp-item:hover {
+  background: #f9fafb;
+}
+
+.tnp-item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.tnp-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tnp-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+
+.tnp-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tnp-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.tnp-badge.blue {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.tnp-badge.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tnp-time {
+  font-size: 11px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.tnp-item-sent {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.tnp-item-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.tnp-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.tnp-btn:hover {
+  opacity: 0.8;
+}
+
+.tnp-btn.pdf {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.tnp-btn.excel {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tnp-item-status {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.tnp-received-icon {
+  color: #22c55e;
+}

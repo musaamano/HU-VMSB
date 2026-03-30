@@ -1,0 +1,32 @@
+.transport-layout {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-main);
+  overflow: hidden;
+}
+
+.transport-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: margin-left 0.3s ease;
+}
+
+.transport-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.content-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .transport-content {
+    padding: 16px;
+  }
+}

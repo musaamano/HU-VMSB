@@ -1,0 +1,160 @@
+/* Fuel Dispense Form - Compact Professional Design */
+
+.fuel-dispense-page {
+    padding: 24px 28px;
+    animation: fadeInUp 0.5s ease-in;
+}
+
+/* Authorization Status Banner */
+.auth-status-banner {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-status-banner.success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border: 2px solid #10b981;
+}
+
+.auth-status-banner.error {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border: 2px solid #ef4444;
+}
+
+.auth-status-banner .auth-icon {
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.auth-status-banner.success .auth-icon {
+    background: #10b981;
+    color: white;
+}
+
+.auth-status-banner.error .auth-icon {
+    background: #ef4444;
+    color: white;
+}
+
+.auth-status-banner .auth-message {
+    flex: 1;
+}
+
+.auth-status-banner .auth-message strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.auth-status-banner.success .auth-message strong {
+    color: #065f46;
+}
+
+.auth-status-banner.error .auth-message strong {
+    color: #991b1b;
+}
+
+.auth-status-banner .auth-message p {
+    margin: 0;
+    font-size: 12px;
+    color: #374151;
+}
+
+/* Authorization Info Box */
+.auth-info-box {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+    border: 1px solid #d1d5db;
+}
+
+.auth-info-box p {
+    margin: 6px 0;
+    font-size: 12px;
+    color: #374151;
+}
+
+.auth-info-box strong {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* Authorization Verification Section */
+.auth-verification-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.fuel-btn-verify {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.fuel-btn-verify:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.auth-verified-badge {
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Help Text */
+.fuel-help-text {
+    font-size: 11px;
+    color: #374151;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fuel-dispense-page {
+        padding: 20px;
+    }
+
+    .auth-verification-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .fuel-btn-verify {
+        width: 100%;
+        justify-content: center;
+    }
+}

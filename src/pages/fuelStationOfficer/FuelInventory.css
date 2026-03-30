@@ -1,0 +1,244 @@
+/* Fuel Inventory - Compact Professional Design */
+
+.fuel-inventory-page {
+    padding: 24px 28px;
+    animation: fadeInUp 0.5s ease-in;
+}
+
+/* Inventory Grid */
+.fuel-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.fuel-inventory-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(124, 58, 237, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.fuel-inventory-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fuel-inventory-card:hover::before {
+    opacity: 1;
+}
+
+.fuel-inventory-card:hover {
+    box-shadow:
+        0 8px 24px rgba(124, 58, 237, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    border-color: rgba(124, 58, 237, 0.2);
+}
+
+.fuel-inventory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.fuel-type-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fuel-type-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+}
+
+.fuel-type-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.fuel-inventory-card:hover .fuel-type-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.fuel-type-icon.diesel {
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+.fuel-type-icon.petrol {
+    filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3));
+}
+
+.stock-level-badge {
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stock-level-badge.high {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.stock-level-badge.medium {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+.stock-level-badge.low {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.fuel-inventory-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fuel-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.amount-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1f2937;
+    transition: color 0.3s ease;
+}
+
+.fuel-inventory-card:hover .amount-value {
+    color: #7c3aed;
+}
+
+.amount-unit {
+    font-size: 16px;
+    color: #374151;
+    font-weight: 500;
+}
+
+.fuel-capacity {
+    font-size: 12px;
+    color: #374151;
+}
+
+.fuel-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.fuel-progress-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+.fuel-progress-fill.diesel {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.fuel-progress-fill.petrol {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.fuel-progress-fill.high {
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.fuel-progress-fill.medium {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.fuel-progress-fill.low {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.fuel-inventory-status {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.fuel-inventory-status.good {
+    color: #059669;
+}
+
+.fuel-inventory-status.low {
+    color: #d97706;
+}
+
+.fuel-inventory-status.critical {
+    color: #dc2626;
+}
+
+.fuel-last-updated {
+    font-size: 11px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.fuel-btn-update {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.fuel-btn-update:hover {
+    background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fuel-inventory-page {
+        padding: 20px;
+    }
+
+    .fuel-inventory-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,110 @@
+.user-navbar {
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  
+  .navbar-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+  
+  .navbar-logo span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #2563eb, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #4b5563;
+    transition: all 0.2s;
+    position: relative;
+  }
+  
+  .nav-item:hover {
+    background: #f3f4f6;
+    transform: scale(1.05);
+  }
+  
+  .nav-item.active {
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-item.active-blue {
+    background: #2563eb;
+  }
+  
+  .nav-item.active-green {
+    background: #16a34a;
+  }
+  
+  .nav-item.active-red {
+    background: #dc2626;
+  }
+  
+  .nav-item.active-purple {
+    background: #9333ea;
+  }
+  
+  .nav-item.active-orange {
+    background: #ea580c;
+  }
+  
+  .nav-icon {
+    margin-right: 0.5rem;
+    font-size: 1.25rem;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+  
+  .nav-badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background: #ef4444;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  @media (min-width: 768px) {
+    .nav-text {
+      display: inline;
+    }
+  }

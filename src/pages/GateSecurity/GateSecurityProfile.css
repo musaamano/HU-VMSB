@@ -1,0 +1,1002 @@
+/* Premium Gate Security Profile Styles - Ultra Professional Design */
+
+/* Advanced Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(74, 144, 226, 0.8);
+    }
+}
+
+/* Main Container - Premium Layout */
+.gate-profile-container {
+    padding: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.gate-profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(74, 144, 226, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(53, 122, 189, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+/* Premium Header Section */
+.gate-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 32px 40px;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #2a5298 100%);
+    border-radius: 28px;
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #2a5298 100%),
+        linear-gradient(135deg, #ffffff 0%, #e7f3ff 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow:
+        0 20px 60px rgba(74, 144, 226, 0.4),
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        0 0 0 1px rgba(74, 144, 226, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gate-profile-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+.gate-profile-title {
+    position: relative;
+    z-index: 1;
+}
+
+.gate-profile-title h2 {
+    margin: 0 0 12px 0;
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+}
+
+.gate-profile-title p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
+}
+
+/* Premium Action Buttons */
+.gate-btn-edit,
+.gate-btn-save,
+.gate-btn-cancel {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.gate-btn-edit::before,
+.gate-btn-save::before,
+.gate-btn-cancel::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.gate-btn-edit:hover::before,
+.gate-btn-save:hover::before,
+.gate-btn-cancel:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.gate-btn-edit {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    box-shadow:
+        0 8px 24px rgba(74, 144, 226, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+}
+
+.gate-btn-edit:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 16px 40px rgba(74, 144, 226, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+.gate-edit-actions {
+    display: flex;
+    gap: 16px;
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+}
+
+.gate-btn-save {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    box-shadow:
+        0 8px 24px rgba(16, 185, 129, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.gate-btn-save:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 16px 40px rgba(16, 185, 129, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.gate-btn-cancel {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow:
+        0 8px 24px rgba(239, 68, 68, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.gate-btn-cancel:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 16px 40px rgba(239, 68, 68, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Premium Profile Content */
+.gate-profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Ultra Premium Profile Photo Section */
+.gate-profile-photo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 40px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 32px;
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+        linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow:
+        0 25px 70px rgba(74, 144, 226, 0.25),
+        0 15px 40px rgba(0, 0, 0, 0.1),
+        0 8px 20px rgba(74, 144, 226, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
+    animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s backwards;
+}
+
+.gate-profile-photo-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(53, 122, 189, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+.gate-profile-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid transparent;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    background-clip: padding-box;
+    box-shadow:
+        0 20px 60px rgba(74, 144, 226, 0.4),
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 6px 20px rgba(74, 144, 226, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.gate-profile-photo::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #2a5298 100%);
+    z-index: -1;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.gate-profile-photo:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow:
+        0 30px 80px rgba(74, 144, 226, 0.6),
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        0 10px 30px rgba(74, 144, 226, 0.4),
+        inset 0 4px 8px rgba(255, 255, 255, 0.4);
+}
+
+.gate-profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.gate-profile-photo:hover img {
+    transform: scale(1.05);
+}
+
+.gate-profile-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: #4a90e2;
+    text-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+    animation: float 3s ease-in-out infinite;
+}
+
+.gate-upload-btn {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 8px 24px rgba(74, 144, 226, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gate-upload-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.gate-upload-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.gate-upload-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow:
+        0 16px 40px rgba(74, 144, 226, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Premium Profile Grid */
+.gate-profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+}
+
+.gate-profile-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 32px;
+    border-radius: 24px;
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+        linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow:
+        0 20px 60px rgba(74, 144, 226, 0.2),
+        0 12px 40px rgba(0, 0, 0, 0.1),
+        0 6px 20px rgba(74, 144, 226, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.gate-profile-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #4a90e2 0%, #357abd 50%, #4a90e2 100%);
+    transform: scaleX(0);
+    transition: transform 0.5s ease;
+    box-shadow: 0 4px 16px rgba(74, 144, 226, 0.6);
+}
+
+.gate-profile-section:hover::before {
+    transform: scaleX(1);
+}
+
+.gate-profile-section:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 30px 80px rgba(74, 144, 226, 0.3),
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 10px 30px rgba(74, 144, 226, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 1),
+        0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.gate-profile-section h3 {
+    margin: 0 0 24px 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #1e3c72;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid transparent;
+    background: linear-gradient(90deg, #e7f3ff 0%, #cfe7ff 100%);
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    text-shadow: 0 2px 4px rgba(30, 60, 114, 0.1);
+    letter-spacing: 0.3px;
+    position: relative;
+}
+
+.gate-profile-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #357abd);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.4);
+}
+
+.gate-profile-section:hover h3::after {
+    width: 120px;
+}
+
+/* Premium Profile Fields */
+.gate-profile-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gate-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.gate-field-group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.gate-field-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #212529;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 2px solid #e7f3ff;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gate-field-value::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 144, 226, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.gate-field-value:hover::before {
+    left: 100%;
+}
+
+.gate-employee-id {
+    background: linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 100%);
+    color: #1e3c72;
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    border: 2px solid #4a90e2;
+    box-shadow:
+        0 8px 24px rgba(74, 144, 226, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.gate-role {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid #28a745;
+    box-shadow:
+        0 8px 24px rgba(40, 167, 69, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.gate-location {
+    color: #4a90e2;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #e7f3ff 100%);
+    border: 2px solid #4a90e2;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+/* Premium Form Inputs */
+.gate-input,
+.gate-select {
+    padding: 14px 16px;
+    border: 2px solid #e7f3ff;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow:
+        0 4px 12px rgba(74, 144, 226, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    position: relative;
+}
+
+.gate-input:focus,
+.gate-select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow:
+        0 0 0 4px rgba(74, 144, 226, 0.2),
+        0 8px 24px rgba(74, 144, 226, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+/* Ultra Premium Statistics Cards */
+.gate-stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.gate-stat-mini-card {
+    background: linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 100%);
+    padding: 28px 24px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #4a90e2;
+    box-shadow:
+        0 15px 40px rgba(74, 144, 226, 0.25),
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.gate-stat-mini-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4a90e2 0%, #357abd 50%, #4a90e2 100%);
+    box-shadow: 0 4px 16px rgba(74, 144, 226, 0.6);
+}
+
+.gate-stat-mini-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow:
+        0 25px 60px rgba(74, 144, 226, 0.4),
+        0 15px 40px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 1);
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+.gate-stat-mini-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3));
+}
+
+.gate-stat-mini-value {
+    font-size: 32px;
+    font-weight: 900;
+    color: #1e3c72;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(30, 60, 114, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.gate-stat-mini-label {
+    font-size: 13px;
+    color: #495057;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Ultra Premium Information Section */
+.gate-profile-info-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 40px;
+    border-radius: 32px;
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+        linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow:
+        0 25px 70px rgba(74, 144, 226, 0.25),
+        0 15px 40px rgba(0, 0, 0, 0.1),
+        0 8px 20px rgba(74, 144, 226, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.9);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s backwards;
+}
+
+.gate-profile-info-section h3 {
+    margin: 0 0 32px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e3c72;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(30, 60, 114, 0.1);
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.gate-profile-info-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #4a90e2, #357abd);
+    border-radius: 2px;
+    box-shadow: 0 4px 16px rgba(74, 144, 226, 0.6);
+}
+
+.gate-info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.gate-info-card {
+    background: linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 100%);
+    padding: 28px;
+    border-radius: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #4a90e2;
+    box-shadow:
+        0 15px 40px rgba(74, 144, 226, 0.25),
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.gate-info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.gate-info-card:hover::before {
+    left: 100%;
+}
+
+.gate-info-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow:
+        0 25px 60px rgba(74, 144, 226, 0.4),
+        0 15px 40px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 1);
+}
+
+.gate-info-icon {
+    font-size: 40px;
+    flex-shrink: 0;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3));
+}
+
+.gate-info-content h4 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: #1e3c72;
+    text-shadow: 0 2px 4px rgba(30, 60, 114, 0.1);
+}
+
+.gate-info-content p {
+    margin: 0;
+    font-size: 15px;
+    color: #495057;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Advanced Responsive Design */
+@media (max-width: 1200px) {
+    .gate-profile-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .gate-info-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .gate-profile-header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .gate-edit-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .gate-profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gate-info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .gate-stats-cards {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .gate-profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .gate-profile-title h2 {
+        font-size: 24px;
+    }
+
+    .gate-profile-photo-section {
+        padding: 24px;
+    }
+
+    .gate-profile-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gate-profile-container {
+        padding: 0 10px;
+    }
+
+    .gate-stats-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .gate-info-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .gate-btn-edit,
+    .gate-btn-save,
+    .gate-btn-cancel {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Premium Animation Sequences */
+.gate-profile-section {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.gate-profile-section:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.gate-profile-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.gate-profile-section:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.gate-profile-section:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.gate-info-card {
+    animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.gate-info-card:nth-child(1) {
+    animation-delay: 0.9s;
+}
+
+.gate-info-card:nth-child(2) {
+    animation-delay: 1.0s;
+}
+
+.gate-info-card:nth-child(3) {
+    animation-delay: 1.1s;
+}
+
+.gate-stat-mini-card {
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.gate-stat-mini-card:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.gate-stat-mini-card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus States for Accessibility */
+.gate-btn-edit:focus,
+.gate-btn-save:focus,
+.gate-btn-cancel:focus,
+.gate-upload-btn:focus {
+    outline: 3px solid rgba(74, 144, 226, 0.5);
+    outline-offset: 2px;
+}
+
+.gate-input:focus,
+.gate-select:focus {
+    outline: 3px solid rgba(74, 144, 226, 0.3);
+    outline-offset: 2px;
+}
+
+
+/* Dark Theme Support */
+[data-theme="dark"] .gate-profile-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+}
+
+[data-theme="dark"] .profile-card,
+[data-theme="dark"] .profile-section {
+    background: #2d2d2d;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .profile-info-item {
+    background: #1a1a1a;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .profile-label {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .profile-value {
+    color: #ffffff;
+}
+
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+    color: #ffffff;
+}

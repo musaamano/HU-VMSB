@@ -1,0 +1,151 @@
+/* ===== REPORTS PAGE ===== */
+.reports-page {
+  font-family: 'Inter', sans-serif;
+  padding: 20px;
+  background-color: #0f172a;
+  color: #f1f5f9;
+  min-height: 100vh;
+}
+
+.reports-page h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.reports-page p {
+  color: #94a3b8;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* ===== SEARCH BAR ===== */
+.report-search-wrapper {
+  margin-bottom: 20px;
+  max-width: 400px;
+}
+
+.report-search {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.report-search::placeholder {
+  color: #94a3b8;
+}
+
+/* ===== REQUEST NEW REPORT ===== */
+.request-report {
+  margin-bottom: 20px;
+}
+
+.request-report h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.request-report button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: #f1f5f9;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.request-report button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ===== REPORT CARDS ===== */
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.report-card {
+  background: #1e293b;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.report-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.report-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* ===== ACTION BUTTONS ===== */
+.report-actions {
+  margin-top: 12px;
+}
+
+.report-actions button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  background-color: #22c55e;
+  color: #f1f5f9;
+  transition: background 0.2s;
+}
+
+.report-actions button:hover {
+  opacity: 0.9;
+}
+
+/* ===== NO REPORTS ===== */
+.no-reports {
+  color: #facc15;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* ===== PENDING REPORT REQUESTS ===== */
+.pending-requests {
+  margin-top: 20px;
+  background: #1e293b;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.pending-requests h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.pending-requests div {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #f1f5f9;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 800px) {
+  .report-list,
+  .request-report,
+  .pending-requests {
+    gap: 12px;
+  }
+  
+  .report-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

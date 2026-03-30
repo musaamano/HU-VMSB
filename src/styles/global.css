@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  font-family: var(--font-family, Arial, sans-serif);
+  /* Remove fixed background - let themes.css handle it */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+  background: var(--bg-surface, white);
+  margin-bottom: 8px;
+}
