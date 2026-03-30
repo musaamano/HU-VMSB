@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "HU-VMS-PP",
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"javascript.autoClosingTags": false
+	}
+}

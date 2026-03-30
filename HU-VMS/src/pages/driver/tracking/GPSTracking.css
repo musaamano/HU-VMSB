@@ -1,0 +1,122 @@
+@import '../driver-shared.css';
+
+.gps-tracking {
+  padding: 32px;
+  animation: driverFadeIn 0.3s ease-in;
+}
+
+.gps-tracking h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+}
+
+/* Loading state */
+.gps-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: #6b7280;
+  font-size: 15px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed #e5e7eb;
+  margin: 32px;
+}
+
+/* Tracking info cards */
+.tracking-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.info-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(124, 58, 237, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: driverFadeInUp 0.5s ease backwards;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4a90e2, #7c3aed);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.info-card:hover::before { opacity: 1; }
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.15);
+  border-color: rgba(74, 144, 226, 0.2);
+}
+
+.info-card span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-card strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  word-break: break-all;
+}
+
+/* Map container — blue gradient border */
+.map-container {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(74, 144, 226, 0.15),
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+    linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  overflow: hidden;
+  animation: driverFadeInUp 0.6s ease 0.2s backwards;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-container:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 30px 80px rgba(74, 144, 226, 0.2),
+    0 15px 40px rgba(0, 0, 0, 0.12),
+    0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+/* Leaflet map inside */
+.map-container .leaflet-container {
+  border-radius: 18px;
+}
+
+/* Dark theme */
+[data-theme="dark"] .gps-tracking h2 { color: #ffffff; }
+[data-theme="dark"] .info-card { background: #2d2d2d; border-color: #404040; }
+[data-theme="dark"] .info-card strong { color: #ffffff; }
+[data-theme="dark"] .map-container { background: #2d2d2d; }
+[data-theme="dark"] .gps-loading { background: #2d2d2d; color: #b0b0b0; }

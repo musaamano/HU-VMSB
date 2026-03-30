@@ -1,0 +1,242 @@
+/* 
+ * Haramaya University Vehicle Management System
+ * Global Admin Theme - University Light Theme
+ * Color Palette: White background with Lime Green accents
+ */
+
+:root {
+  /* Primary Colors */
+  --admin-bg-primary: #ffffff;
+  --admin-bg-secondary: #f8fafc;
+  --admin-primary: #16a34a;
+  --admin-primary-dark: #15803d;
+  --admin-accent: #bbf7d0;
+  
+  /* Text Colors */
+  --admin-text-primary: #000000;
+  --admin-text-secondary: #333333;
+  --admin-text-muted: #666666;
+  --admin-text-light: #999999;
+  
+  /* Border Colors */
+  --admin-border-primary: #16a34a;
+  --admin-border-light: #e2e8f0;
+  --admin-border-lighter: #f1f5f9;
+  
+  /* Status Colors */
+  --admin-success: #4CAF50;
+  --admin-success-bg: rgba(76, 175, 80, 0.2);
+  --admin-success-border: rgba(76, 175, 80, 0.4);
+  
+  --admin-warning: #f59e0b;
+  --admin-warning-bg: rgba(245, 158, 11, 0.2);
+  --admin-warning-border: rgba(245, 158, 11, 0.4);
+  
+  --admin-danger: #ef4444;
+  --admin-danger-bg: rgba(239, 68, 68, 0.2);
+  --admin-danger-border: rgba(239, 68, 68, 0.4);
+  
+  --admin-info: #2196F3;
+  --admin-info-bg: rgba(33, 150, 243, 0.2);
+  --admin-info-border: rgba(33, 150, 243, 0.4);
+  
+  /* Hover & Focus */
+  --admin-hover-bg: #f8fafc;
+  --admin-focus-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+  
+  /* Shadows */
+  --admin-shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --admin-shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --admin-shadow-lg: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* Global Container Styles */
+.admin-container {
+  padding: 30px;
+  padding-left: 50px;
+  background: var(--admin-bg-primary);
+  min-height: 100vh;
+  color: var(--admin-primary);
+}
+
+/* Heading Styles */
+.admin-container h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: var(--admin-primary);
+  font-weight: 600;
+  background: var(--admin-bg-primary);
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: var(--admin-shadow-sm);
+}
+
+/* Input Styles */
+.admin-input,
+.admin-select,
+.admin-textarea {
+  padding: 12px 20px;
+  background: var(--admin-bg-primary);
+  border: 1px solid var(--admin-border-primary);
+  border-radius: 8px;
+  color: var(--admin-text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.admin-input:focus,
+.admin-select:focus,
+.admin-textarea:focus {
+  border-color: var(--admin-primary);
+  box-shadow: var(--admin-focus-shadow);
+}
+
+.admin-input::placeholder {
+  color: var(--admin-text-muted);
+}
+
+/* Table Styles */
+.admin-table-container {
+  background: var(--admin-bg-primary);
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--admin-border-primary);
+  box-shadow: var(--admin-shadow-lg);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table thead {
+  background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-dark));
+}
+
+.admin-table th {
+  padding: 18px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  font-size: 14px;
+  border-bottom: 2px solid var(--admin-border-primary);
+}
+
+.admin-table tbody tr {
+  border-bottom: 1px solid var(--admin-border-light);
+  transition: background 0.3s ease;
+  background: var(--admin-bg-primary);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--admin-hover-bg);
+}
+
+.admin-table td {
+  padding: 18px 20px;
+  color: var(--admin-text-primary);
+  font-size: 14px;
+}
+
+/* Button Styles */
+.admin-btn-primary {
+  padding: 12px 24px;
+  background: var(--admin-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-btn-primary:hover {
+  background: var(--admin-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--admin-shadow-md);
+}
+
+.admin-btn-secondary {
+  padding: 12px 24px;
+  background: var(--admin-bg-secondary);
+  color: var(--admin-text-primary);
+  border: 1px solid var(--admin-border-light);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-btn-secondary:hover {
+  background: var(--admin-hover-bg);
+}
+
+/* Card Styles */
+.admin-card {
+  background: var(--admin-bg-primary);
+  border-radius: 12px;
+  padding: 25px;
+  border: 2px solid var(--admin-border-primary);
+  box-shadow: var(--admin-shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Status Badge Styles */
+.admin-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.admin-badge-success {
+  background: var(--admin-success-bg);
+  color: var(--admin-success);
+  border: 1px solid var(--admin-success-border);
+}
+
+.admin-badge-warning {
+  background: var(--admin-warning-bg);
+  color: var(--admin-warning);
+  border: 1px solid var(--admin-warning-border);
+}
+
+.admin-badge-danger {
+  background: var(--admin-danger-bg);
+  color: var(--admin-danger);
+  border: 1px solid var(--admin-danger-border);
+}
+
+.admin-badge-info {
+  background: var(--admin-info-bg);
+  color: var(--admin-info);
+  border: 1px solid var(--admin-info-border);
+}
+
+/* No Results Message */
+.admin-no-results {
+  text-align: center;
+  padding: 40px;
+  color: var(--admin-primary);
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 20px;
+  }
+  
+  .admin-container h1 {
+    font-size: 24px;
+    padding: 15px 20px;
+  }
+}

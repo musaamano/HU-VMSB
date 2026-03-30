@@ -1,0 +1,55 @@
+[33mcommit 763cd0d1dc02c4daff10b40e29345bc2717a69fd[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdriver-dashboard-update[m[33m, [m[1;31morigin/driver-dashboard-update[m[33m, [m[1;32mmain[m[33m)[m
+Author: Musa <musaamano56@gmail.com>
+Date:   Fri Mar 6 05:27:32 2026 +0300
+
+    Update HU-VMS project
+
+ FIX_REACT_ERROR.md                                 |  109 [32m+[m
+ INSTALL_PDF_PACKAGES.txt                           |   49 [32m+[m
+ PDF_EXPORT_SETUP.md                                |  127 [32m++[m
+ PDF_EXPORT_SUMMARY.md                              |  230 [32m++[m
+ README_FIX.md                                      |   84 [32m+[m
+ START_HERE.txt                                     |   73 [32m+[m
+ URGENT_FIX_NOW.txt                                 |  106 [32m+[m
+ fix-and-install.bat                                |   32 [32m+[m
+ fix-and-install.sh                                 |   32 [32m+[m
+ package-lock.json                                  |  239 [32m+++[m
+ package.json                                       |    4 [32m+[m[31m-[m
+ src/components/ExportButton.css                    |  134 [32m+[m[31m-[m
+ src/components/ExportButton.jsx                    |  348 [32m+[m[31m--[m
+ src/context/AuthContext.jsx                        |    2 [32m+[m[31m-[m
+ src/pages/admin/AdminDashboardOverview.jsx         |   12 [32m+[m[31m-[m
+ src/pages/driver/DriverDashboard.css               | 2240 [32m+++++++++++++++++++[m[31m-[m
+ src/pages/driver/DriverDashboard.jsx               |  468 [32m+++[m[31m-[m
+ .../driver/availability/DriverAvailability.css     |  145 [32m++[m
+ .../driver/availability/DriverAvailability.jsx     |   73 [32m+[m
+ src/pages/driver/complaints/DriverComplaints.css   |  197 [32m++[m
+ src/pages/driver/complaints/DriverComplaints.jsx   |  129 [32m++[m
+ src/pages/driver/fuel/FuelReport.css               |  297 [32m+++[m
+ src/pages/driver/fuel/FuelReport.jsx               |  176 [32m++[m
+ .../gate-verification/ExitEntryVerification.css    |  102 [32m+[m
+ .../gate-verification/ExitEntryVerification.jsx    |  117 [32m+[m
+ .../driver/notifications/DriverNotifications.css   |  110 [32m+[m
+ .../driver/notifications/DriverNotifications.jsx   |  105 [32m+[m
+ src/pages/driver/profile/DriverProfile.css         |  306 [32m+++[m
+ src/pages/driver/profile/DriverProfile.jsx         |  197 [32m++[m
+ .../driver/submit-complaint/SubmitComplaint.css    |  670 [32m++++++[m
+ .../driver/submit-complaint/SubmitComplaint.jsx    |  236 [32m+++[m
+ src/pages/driver/tracking/GPSTracking.css          |   54 [32m+[m
+ src/pages/driver/tracking/GPSTracking.jsx          |   81 [32m+[m
+ src/pages/driver/trip-status/UpdateTripStatus.css  |  142 [32m++[m
+ src/pages/driver/trip-status/UpdateTripStatus.jsx  |  112 [32m+[m
+ src/pages/driver/trips/AcceptTrip.css              |   78 [32m+[m
+ src/pages/driver/trips/AcceptTrip.jsx              |   35 [32m+[m
+ src/pages/driver/trips/AssignedTrips.css           |  338 [32m+++[m
+ src/pages/driver/trips/AssignedTrips.jsx           |  107 [32m+[m
+ src/pages/driver/trips/TripHistory.css             |  164 [32m++[m
+ src/pages/driver/trips/TripHistory.jsx             |   74 [32m+[m
+ .../driver/vehicle-report/VehicleIssueReport.css   |  249 [32m+++[m
+ .../driver/vehicle-report/VehicleIssueReport.jsx   |  159 [32m++[m
+ src/pages/driver/vehicle/VehicleInfo.css           |  126 [32m++[m
+ src/pages/driver/vehicle/VehicleInfo.jsx           |  107 [32m+[m
+ src/services/api.js                                |   38 [32m+[m
+ src/services/driverService.js                      |  338 [32m++[m[31m-[m
+ src/utils/pdfGenerator.js                          |  414 [32m++++[m
+ 48 files changed, 9354 insertions(+), 411 deletions(-)

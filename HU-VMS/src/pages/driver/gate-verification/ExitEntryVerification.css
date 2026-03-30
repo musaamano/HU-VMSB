@@ -1,0 +1,166 @@
+@import '../driver-shared.css';
+
+.exit-entry-verification {
+  padding: 32px;
+  animation: driverFadeIn 0.3s ease-in;
+}
+
+.exit-entry-verification h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+}
+
+/* Type selector — purple pill tabs */
+.verification-type-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.verification-type-selector button {
+  flex: 1;
+  padding: 14px 20px;
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  color: #374151;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verification-type-selector button:hover {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  color: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-2px);
+}
+
+.verification-type-selector button.active {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+}
+
+/* Verification form — blue gradient border */
+.verification-form {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  padding: 28px;
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%),
+    linear-gradient(135deg, #e7f3ff 0%, #cfe7ff 50%, #e7f3ff 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    0 20px 60px rgba(74, 144, 226, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95);
+  animation: driverFadeInUp 0.5s ease 0.1s backwards;
+  margin-bottom: 24px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verification-form:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 30px 80px rgba(74, 144, 226, 0.18),
+    0 15px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 4px rgba(74, 144, 226, 0.1);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.form-group select,
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 2px solid rgba(74, 144, 226, 0.2);
+  border-radius: 12px;
+  font-size: 14px;
+  color: #1f2937;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.08);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #4a90e2;
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(74, 144, 226, 0.2), 0 0 0 4px rgba(74, 144, 226, 0.1);
+  transform: translateY(-1px);
+}
+
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+/* Submit button */
+.btn-primary {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.35);
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+}
+
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* AI tracking info */
+.ai-tracking-info {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  border-radius: 12px;
+  padding: 14px 18px;
+  border-left: 4px solid #7c3aed;
+  animation: driverFadeInUp 0.5s ease 0.2s backwards;
+}
+
+.ai-tracking-info p {
+  font-size: 13px;
+  color: #374151;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Dark theme */
+[data-theme="dark"] .exit-entry-verification h2 { color: #ffffff; }
+[data-theme="dark"] .verification-type-selector button { background: #2d2d2d; color: #e0e0e0; border-color: #404040; }
+[data-theme="dark"] .verification-form { background: #2d2d2d; }
+[data-theme="dark"] .form-group label { color: #e0e0e0; }
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea { background: #1a1a1a; border-color: #404040; color: #ffffff; }
+[data-theme="dark"] .ai-tracking-info { background: #3a2d4a; }
+[data-theme="dark"] .ai-tracking-info p { color: #b0b0b0; }

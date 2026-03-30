@@ -1,0 +1,425 @@
+/* Vehicle Movement Page */
+.vehicle-movement-page {
+    padding: 0;
+}
+
+.movement-layout {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 32px;
+}
+
+/* Movement Form Section */
+.movement-form-section {
+    background: white;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(74, 144, 226, 0.1);
+}
+
+/* Movement Type Selector */
+.movement-type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.type-btn {
+    padding: 20px;
+    border: 3px solid #e5e7eb;
+    border-radius: 16px;
+    background: #f9fafb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.type-btn:hover {
+    border-color: #4a90e2;
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+}
+
+.type-btn.active {
+    border-color: #4a90e2;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.type-icon {
+    font-size: 24px;
+}
+
+/* Movement Form */
+.movement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.form-section {
+    padding-bottom: 24px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.form-section h3 {
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    color: #374151;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Timestamp Display */
+.timestamp-display {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #d1d5db;
+}
+
+.timestamp-label {
+    color: #6b7280;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.timestamp-value {
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    gap: 16px;
+    padding-top: 24px;
+}
+
+.form-actions button {
+    flex: 1;
+}
+
+/* Movements List Section */
+.movements-list-section {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 10px 20px rgba(0, 0, 0, 0.08);
+    height: fit-content;
+    position: sticky;
+    top: 24px;
+}
+
+.movements-list-section h3 {
+    color: #1f2937;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Movements Stats */
+.movements-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+}
+
+.stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: #4a90e2;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 11px;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Movements List */
+.movements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.movements-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.movements-list::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 10px;
+}
+
+.movements-list::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.movements-list::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.movement-card {
+    background: #f9fafb;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.movement-card:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.15);
+}
+
+.movement-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.movement-plate {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.movement-status-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.movement-status-badge.inside {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.movement-status-badge.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.movement-type-badge {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.movement-type-badge.entry {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.movement-type-badge.exit {
+    background: #fce7f3;
+    color: #9f1239;
+}
+
+.movement-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.movement-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.info-label {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #1f2937;
+    font-weight: 600;
+    text-align: right;
+}
+
+.register-exit-btn {
+    margin-top: 12px;
+    padding: 10px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.register-exit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .movement-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .movements-list-section {
+        position: static;
+    }
+
+    .movements-list {
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .movement-type-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .movements-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions button {
+        width: 100%;
+    }
+}
+
+
+/* Dark Theme Support */
+[data-theme="dark"] .vehicle-movement-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+}
+
+[data-theme="dark"] .movement-card,
+[data-theme="dark"] .movement-table,
+[data-theme="dark"] .movement-filters {
+    background: #2d2d2d;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .movement-row {
+    background: #1a1a1a;
+    border-color: #404040;
+}
+
+[data-theme="dark"] .movement-row:hover {
+    background: #333333;
+}
+
+[data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+    color: #ffffff;
+}
+
+[data-theme="dark"] p {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] input, [data-theme="dark"] select {
+    background: #1a1a1a;
+    border-color: #404040;
+    color: #ffffff;
+}

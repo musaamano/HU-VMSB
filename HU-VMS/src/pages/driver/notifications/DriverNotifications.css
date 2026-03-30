@@ -1,0 +1,181 @@
+@import '../driver-shared.css';
+
+.driver-notifications {
+  padding: 32px;
+  animation: driverFadeIn 0.3s ease-in;
+}
+
+.driver-notifications h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+}
+
+/* Filter buttons — purple pill tabs */
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-buttons button {
+  padding: 8px 20px;
+  border: 2px solid rgba(124, 58, 237, 0.2);
+  border-radius: 20px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-buttons button:hover {
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  color: #7c3aed;
+  border-color: rgba(124, 58, 237, 0.4);
+  transform: translateY(-1px);
+}
+
+.filter-buttons button.active {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+/* Notifications list */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.no-notifications {
+  text-align: center;
+  color: #6b7280;
+  padding: 60px 20px;
+  font-size: 15px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed #e5e7eb;
+}
+
+/* Notification card */
+.notification-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(124, 58, 237, 0.08);
+  position: relative;
+  overflow: hidden;
+  animation: driverFadeInUp 0.4s ease backwards;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.notification-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.notification-card:hover::before { opacity: 1; }
+
+.notification-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.notification-card.unread {
+  background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%);
+  border-color: rgba(124, 58, 237, 0.15);
+}
+
+.notification-card.read {
+  opacity: 0.8;
+}
+
+/* Severity variants */
+.notification-card.high,
+.notification-card.critical {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.notification-card.high::before,
+.notification-card.critical::before {
+  background: linear-gradient(90deg, #ef4444, #fca5a5);
+  opacity: 1;
+}
+
+/* Icon */
+.notification-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content */
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-content h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 6px 0;
+}
+
+.notification-content p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+}
+
+.notification-time {
+  font-size: 11px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Unread dot */
+.unread-indicator {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+  animation: driverPulse 2s ease-in-out infinite;
+}
+
+/* Dark theme */
+[data-theme="dark"] .driver-notifications h2 { color: #ffffff; }
+[data-theme="dark"] .notification-card { background: #2d2d2d; border-color: #404040; }
+[data-theme="dark"] .notification-card.unread { background: #3a2d4a; }
+[data-theme="dark"] .notification-content h4 { color: #ffffff; }
+[data-theme="dark"] .notification-content p { color: #b0b0b0; }
+[data-theme="dark"] .notification-icon { background: #404040; }
+[data-theme="dark"] .no-notifications { background: #2d2d2d; }
+[data-theme="dark"] .filter-buttons button { background: #2d2d2d; color: #e0e0e0; border-color: #404040; }
